@@ -8,7 +8,7 @@ const UsersByCountryPieChartComponent = () => {
 
   const data = useMemo(() => {
     const usersToCountries = users.map((user) => user.country);
-    const uniqueCountries = [...new Set(countries)];
+    const uniqueCountries = [...new Set(usersToCountries)];
     return uniqueCountries.map((country) => ({
       name: country,
       value: usersToCountries.filter((c) => c === country).length,
@@ -30,7 +30,10 @@ const UsersByCountryPieChartComponent = () => {
             dataKey="value"
           >
             {data.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={chartColors[index % COLORS.length]} />
+              <Cell
+                key={`cell-${index}`}
+                fill={chartColors[index % chartColors.length]}
+              />
             ))}
           </Pie>
           <Tooltip />
