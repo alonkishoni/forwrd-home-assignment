@@ -85,12 +85,6 @@ function UsersList() {
   return (
     <>
       <Container>
-        {isLoading && (
-          <Backdrop style={{ color: '#fff', zIndex: 0 }} open={true}>
-            <CircularProgress color="inherit" />
-          </Backdrop>
-        )}
-
         <UsersListHeader
           handleAdd={handleAdd}
           handleSearch={handleSearchChange}
@@ -124,7 +118,13 @@ function UsersList() {
               alignItems="center"
               minHeight="100%"
             >
-              <Paper style={{ padding: '20px' }}>Oops! no results found...</Paper>
+              {!filteredTempUsers.length && !isLoading ? (
+                <Paper style={{ padding: '20px' }}>Oops! no results found...</Paper>
+              ) : (
+                <Paper style={{ padding: '20px' }}>
+                  <CircularProgress color="inherit" />.
+                </Paper>
+              )}
             </Box>
           )}
         </Container>

@@ -1,7 +1,7 @@
 import { MenuItem, TextField } from '@mui/material';
 import { memo, useCallback } from 'react';
 
-const UserField = ({
+const TextSelect = ({
   name,
   value,
   error,
@@ -49,4 +49,4 @@ const UserField = ({
   );
 };
 
-export default memo(UserField);
+export default memo(TextSelect);
