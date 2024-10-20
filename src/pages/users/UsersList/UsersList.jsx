@@ -2,8 +2,8 @@ import { Backdrop, Box, CircularProgress, Container, Paper } from '@mui/material
 import { useUsersContext } from '../../../context/usersContext';
 import { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { FixedSizeList } from 'react-window';
-import { UsersListFooter } from './usersListFooter/UsersListFooter.jsx';
-import { UsersListHeader } from './usersListHeader/UsersListHeader.jsx';
+import { UsersListFooter } from './UsersListFooter/UsersListFooter.jsx';
+import { UsersListHeader } from './UsersListHeader/UsersListHeader.jsx';
 import { useDebounce } from '../../../hooks/useDebounce.hook.jsx';
 import { useErrorsContext } from '../../../context/errorsContext.jsx';
 import { VirtualizedRowWrapper } from '../UserRow/VirtualizedRowWrapper/VirtualizedRowWrapper.jsx';

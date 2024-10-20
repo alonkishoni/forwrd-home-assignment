@@ -1,4 +1,4 @@
-import UsersList from './usersList/UsersList';
+import UsersList from './UsersList/UsersList';
 import { Container } from '@mui/material';
 import { useEffect } from 'react';
 import { useUsersContext } from '../../context/usersContext.jsx';

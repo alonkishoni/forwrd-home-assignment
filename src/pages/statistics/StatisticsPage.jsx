@@ -1,4 +1,4 @@
-import UsersByCountryPieChartComponent from './UsersByCounryPie/usersByCountryPie.jsx';
+import UsersByCountryPieChartComponent from './UsersByCounryPie/UsersByCountryPie.jsx';
 
 function StatisticsPage() {
   return <UsersByCountryPieChartComponent />;
