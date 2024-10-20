@@ -6,7 +6,6 @@ import {
   Box,
 } from '@mui/material';
 import SaveIcon from '@mui/icons-material/Save';
-import { useMemo } from 'react';
 import { useUsersContext } from '../../../../context/usersContext.jsx';
 
 export const UsersListFooter = ({
@@ -14,11 +13,7 @@ export const UsersListFooter = ({
   handleSave,
 }) => {
   const { isLoading } = useUsersContext();
-  const hasSomeErrors = useMemo(
-    () => !!(invalidCount > 0 || emptyCount > 0),
-    [emptyCount, invalidCount]
-  );
-
+  const hasSomeErrors = !!(invalidCount > 0 || emptyCount > 0);
   const hasBothErrors = invalidCount > 0 && emptyCount > 0;
 
   return (
