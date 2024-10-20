@@ -21,3 +21,5 @@ export const VirtualizedRowWrapper = memo(({ data, index, style }) => {
     />
   );
 }, areEqual);
+
+VirtualizedRowWrapper.displayName = 'VirtualizedRowWrapper';

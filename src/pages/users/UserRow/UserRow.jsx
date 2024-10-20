@@ -1,7 +1,7 @@
 import { Grid, IconButton } from '@mui/material';
 import { memo, useCallback } from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
-import UserField from '../userField/UserField.jsx';
+import UserField from '../UserField/UserField.jsx';
 import { useErrorsContext } from '../../../context/errorsContext.jsx';
 import { countryOptions } from '../../../consts/consts.js';
 

@@ -1,6 +1,6 @@
 import { Alert, BottomNavigation, BottomNavigationAction, Paper } from '@mui/material';
 import Box from '@mui/material/Box';
-import SaveIcon from '@mui/icons-material/Save.js';
+import SaveIcon from '@mui/icons-material/Save';
 import { useMemo } from 'react';
 import { useUsersContext } from '../../../../context/usersContext.jsx';
 

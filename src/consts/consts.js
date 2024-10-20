@@ -10,5 +10,5 @@ export const countryOptions = [
 ];
 export const nameRegex = /^[a-zA-Z]+\s?[a-zA-Z]*$/;
 export const emailRegex = /^[^@]+@[^@]+$/;
-export const phoneRegex = /^\+[^\+]+$/;
+export const phoneRegex = /^\+\d+$/;
 export const countryRegex = new RegExp(`^(${countryOptions.join('|')})$`, 'i');
