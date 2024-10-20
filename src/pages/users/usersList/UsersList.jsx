@@ -6,7 +6,7 @@ import { UsersListFooter } from './usersListFooter/UsersListFooter.jsx';
 import { UsersListHeader } from './usersListHeader/UsersListHeader.jsx';
 import { useDebounce } from '../../../hooks/useDebounce.hook.jsx';
 import { useErrorsContext } from '../../../context/errorsContext.jsx';
-import { VirtualizedRowWrapper } from '../userRow/VirtualizedRowWrapper/VirtualizedRowWrapper.jsx';
+import { VirtualizedRowWrapper } from '../UserRow/VirtualizedRowWrapper/VirtualizedRowWrapper.jsx';
 import { filterUsers } from '../../../utils/filterUsers.utils.js';
 
 function UsersList() {
