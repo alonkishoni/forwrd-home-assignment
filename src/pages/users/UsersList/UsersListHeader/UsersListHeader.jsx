@@ -1,6 +1,6 @@
 import Box from '@mui/material/Box';
 import { Button, Stack, Typography } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add.js';
+import AddIcon from '@mui/icons-material/Add';
 import { Search } from '../../../../components/Search/Search.jsx';
 
 export const UsersListHeader = ({
