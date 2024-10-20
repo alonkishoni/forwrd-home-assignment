@@ -1,4 +1,4 @@
-import { Backdrop, Box, CircularProgress, Container, Paper } from '@mui/material';
+import { Box, CircularProgress, Container, Paper } from '@mui/material';
 import { useUsersContext } from '../../../context/usersContext';
 import { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { FixedSizeList } from 'react-window';
