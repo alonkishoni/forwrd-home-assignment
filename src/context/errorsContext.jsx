@@ -1,0 +1,77 @@
+import { createContext, useContext, useState, useMemo, useCallback } from 'react';
+import { validateField } from '../utils/fieldValidator.utils.js';
+
+const ErrorsContext = createContext({
+  errors: {},
+  errorCounts: {},
+  handleFieldChange: () => {},
+  deleteErrorById: () => {},
+});
+
+export const ErrorsContextProvider = ({ children }) => {
+  const [errors, setErrors] = useState({});
+
+  const errorCounts = useMemo(() => {
+    const aggregateCounts = { invalid: 0, empty: 0, touched: 0 };
+
+    Object.values(errors).forEach((userErrors) => {
+      Object.values(userErrors).forEach((fieldErrors) => {
+        if (fieldErrors.invalid) aggregateCounts.invalid += 1;
+        if (fieldErrors.empty) aggregateCounts.empty += 1;
+        if (fieldErrors.touched) aggregateCounts.touched += 1;
+      });
+    });
+
+    return aggregateCounts;
+  }, [errors]);
+
+  const handleFieldChange = useCallback((userId, field, value) => {
+    setErrors((prevErrors) => {
+      const userErrors = prevErrors?.[userId] || {};
+      const prevFieldError = userErrors?.[field];
+      const isValid = validateField(field, value);
+      const isEmpty = value.trim() === '';
+
+      const newFieldError = {
+        touched: true,
+        invalid: !isEmpty && !isValid,
+        empty: isEmpty,
+      };
+
+      if (
+        prevFieldError?.invalid !== newFieldError.invalid ||
+        prevFieldError?.empty !== newFieldError.empty ||
+        prevFieldError?.touched !== newFieldError.touched
+      ) {
+        return {
+          ...prevErrors,
+          [userId]: {
+            ...userErrors,
+            [field]: newFieldError,
+          },
+        };
+      }
+
+      return prevErrors;
+    });
+  }, []);
+
+  const deleteErrorById = useCallback((userId) => {
+    setErrors((prevErrors) => {
+      const newErrors = { ...prevErrors };
+      delete newErrors[userId];
+      return newErrors;
+    });
+  }, []);
+
+  const contextValue = useMemo(
+    () => ({ errors, errorCounts, handleFieldChange, deleteErrorById }),
+    [errorCounts, errors, handleFieldChange, deleteErrorById]
+  );
+
+  return <ErrorsContext.Provider value={contextValue}>{children}</ErrorsContext.Provider>;
+};
+
+export const useErrorsContext = () => useContext(ErrorsContext);
+
+export default ErrorsContext;

@@ -1,0 +1,38 @@
+import Box from '@mui/material/Box';
+import { Button, Stack, Typography } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add.js';
+import { Search } from '../../../../components/Search.jsx';
+
+export const UsersListHeader = ({
+  searchTerm,
+  numberOfResults,
+  handleSearch,
+  handleAdd,
+}) => {
+  return (
+    <Box
+      paddingBlock={2}
+      direction={'row'}
+      style={{
+        width: '100%',
+        justifyContent: 'space-between',
+        display: 'flex',
+        alignItems: 'center',
+      }}
+    >
+      <Stack alignItems={'center'} direction="row" spacing={2}>
+        <Typography variant="h6">Users List</Typography>
+        <Search
+          value={searchTerm}
+          onChange={handleSearch}
+          resultsLength={numberOfResults}
+        />
+      </Stack>
+      <Stack alignItems={'center'} direction="row" spacing={2}>
+        <Button onClick={handleAdd}>
+          <AddIcon />
+        </Button>
+      </Stack>
+    </Box>
+  );
+};
