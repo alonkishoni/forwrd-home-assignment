@@ -1,19 +1,19 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { useUsersContext } from '../../../context/usersContext.jsx';
-
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+import { chartColors } from '../../../consts/consts.js';
 
 const UsersByCountryPieChartComponent = () => {
   const { users } = useUsersContext();
-  const countries = users.map((user) => user.country);
-  const uniqueCountries = [...new Set(countries)];
-  const data = uniqueCountries.map((country) => {
-    return {
+
+  const data = useMemo(() => {
+    const usersToCountries = users.map((user) => user.country);
+    const uniqueCountries = [...new Set(countries)];
+    return uniqueCountries.map((country) => ({
       name: country,
-      value: countries.filter((c) => c === country).length,
-    };
-  });
+      value: usersToCountries.filter((c) => c === country).length,
+    }));
+  }, [users]);
 
   return (
     <div style={{ width: '100%', height: '100vh' }}>
@@ -30,7 +30,7 @@ const UsersByCountryPieChartComponent = () => {
             dataKey="value"
           >
             {data.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+              <Cell key={`cell-${index}`} fill={chartColors[index % COLORS.length]} />
             ))}
           </Pie>
           <Tooltip />
