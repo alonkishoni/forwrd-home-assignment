@@ -12,15 +12,15 @@ const UserRow = ({
   user,
   fields = ['name', 'country', 'email', 'phone'],
 }) => {
-  const { errors, handleFieldChange } = useErrorsContext();
+  const { errors, updateFieldErrorState } = useErrorsContext();
 
   const handleChange = useCallback(
     (e) => {
       const { name, value } = e.target;
       handleInputChange(user.id, name, value);
-      handleFieldChange(user.id, name, value);
+      updateFieldErrorState(user.id, name, value);
     },
-    [handleFieldChange, handleInputChange, user.id]
+    [updateFieldErrorState, handleInputChange, user.id]
   );
 
   const handleDeleteClick = useCallback(() => {

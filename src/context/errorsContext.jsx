@@ -4,7 +4,7 @@ import { validateField } from '../utils/fieldValidator.utils.js';
 const ErrorsContext = createContext({
   errors: {},
   errorCounts: {},
-  handleFieldChange: () => {},
+  updateFieldErrorState: () => {},
   deleteErrorById: () => {},
 });
 
@@ -24,7 +24,7 @@ export const ErrorsContextProvider = ({ children }) => {
     return aggregateCounts;
   }, [errors]);
 
-  const handleFieldChange = useCallback((userId, field, value) => {
+  const updateFieldErrorState = useCallback((userId, field, value) => {
     setErrors((prevErrors) => {
       const userErrors = prevErrors?.[userId] || {};
       const prevFieldError = userErrors?.[field];
@@ -62,8 +62,8 @@ export const ErrorsContextProvider = ({ children }) => {
   }, []);
 
   const contextValue = useMemo(
-    () => ({ errors, errorCounts, handleFieldChange, deleteErrorById }),
-    [errorCounts, errors, handleFieldChange, deleteErrorById]
+    () => ({ errors, errorCounts, updateFieldErrorState, deleteErrorById }),
+    [errorCounts, errors, updateFieldErrorState, deleteErrorById]
   );
 
   return <ErrorsContext.Provider value={contextValue}>{children}</ErrorsContext.Provider>;
