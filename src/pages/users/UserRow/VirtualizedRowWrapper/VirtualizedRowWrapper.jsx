@@ -7,7 +7,7 @@ export const VirtualizedRowWrapper = memo(({ data, index, style }) => {
   const user = filteredTempUsers[index];
 
   if (!user) {
-    return null; // Render nothing if user is not available
+    return null;
   }
 
   return (
