@@ -11,6 +11,7 @@ import { useUsersContext } from '../../../../context/usersContext.jsx';
 export const UsersListFooter = ({
   errorCounts: { invalid: invalidCount, empty: emptyCount },
   handleSave,
+  hasSomeEmptyFields,
 }) => {
   const { isLoading } = useUsersContext();
   const hasSomeErrors = !!(invalidCount > 0 || emptyCount > 0);
@@ -38,7 +39,11 @@ export const UsersListFooter = ({
             disabled={isLoading || hasSomeErrors}
             onClick={handleSave}
             label="Recents"
-            icon={<SaveIcon color={hasSomeErrors ? 'disabled' : 'primary'} />}
+            icon={
+              <SaveIcon
+                color={hasSomeErrors || hasSomeEmptyFields ? 'disabled' : 'primary'}
+              />
+            }
           />
         </BottomNavigation>
       </Box>
