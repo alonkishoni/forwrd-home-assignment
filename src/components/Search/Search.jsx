@@ -6,7 +6,11 @@ export const Search = ({ value, onChange, resultsLength }) => {
 
   return (
     <Stack
-      style={{ borderRadius: '50px', border: '1px gray solid', paddingInline: '4px' }}
+      style={{
+        borderRadius: '50px',
+        border: focused ? '2px #1876d2 solid' : '1px gray solid',
+        paddingInline: '4px',
+      }}
       alignItems={'center'}
       direction={'row'}
     >
@@ -15,7 +19,7 @@ export const Search = ({ value, onChange, resultsLength }) => {
         sx={{
           ml: 1,
           flex: 1,
-          width: focused ? '200px' : '70px', // Expand the input as well
+          width: focused ? '200px' : '70px',
           transition: 'width 0.3s',
         }}
         placeholder="Search"
@@ -24,7 +28,16 @@ export const Search = ({ value, onChange, resultsLength }) => {
         onBlur={() => setFocused(false)}
         onChange={onChange}
       />
-      <Avatar style={{ width: 24, height: 24, fontSize: 14 }}>{resultsLength}</Avatar>{' '}
+      <Avatar
+        style={{
+          backgroundColor: focused ? '#1876d2' : 'gray',
+          width: 24,
+          height: 24,
+          fontSize: 14,
+        }}
+      >
+        {resultsLength}
+      </Avatar>{' '}
     </Stack>
   );
 };

@@ -1,7 +1,7 @@
 import { Grid, IconButton } from '@mui/material';
 import { memo, useCallback } from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
-import UserField from '../UserField/UserField.jsx';
+import UserField from '../../../components/TextSelect/TextSelect.jsx';
 import { useErrorsContext } from '../../../context/errorsContext.jsx';
 import { countryOptions } from '../../../consts/consts.js';
 
@@ -12,15 +12,15 @@ const UserRow = ({
   user,
   fields = ['name', 'country', 'email', 'phone'],
 }) => {
-  const { errors, handleFieldChange } = useErrorsContext();
+  const { errors, updateFieldErrorState } = useErrorsContext();
 
   const handleChange = useCallback(
     (e) => {
       const { name, value } = e.target;
       handleInputChange(user.id, name, value);
-      handleFieldChange(user.id, name, value);
+      updateFieldErrorState(user.id, name, value);
     },
-    [handleFieldChange, handleInputChange, user.id]
+    [updateFieldErrorState, handleInputChange, user.id]
   );
 
   const handleDeleteClick = useCallback(() => {

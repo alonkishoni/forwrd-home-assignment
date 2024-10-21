@@ -1,4 +1,4 @@
-import { Backdrop, Box, CircularProgress, Container, Paper } from '@mui/material';
+import { Box, CircularProgress, Container, Paper } from '@mui/material';
 import { useUsersContext } from '../../../context/usersContext';
 import { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { FixedSizeList } from 'react-window';
@@ -44,6 +44,7 @@ function UsersList() {
       country: '',
       email: '',
       phone: '',
+      isNew: true,
     };
     setTempUsers((prevUsers) => [newUser, ...prevUsers]);
   }, []);
@@ -84,13 +85,7 @@ function UsersList() {
 
   return (
     <>
-      <Container>
-        {isLoading && (
-          <Backdrop style={{ color: '#fff', zIndex: 0 }} open={true}>
-            <CircularProgress color="inherit" />
-          </Backdrop>
-        )}
-
+      <Container style={{ paddingInline: '0px' }}>
         <UsersListHeader
           handleAdd={handleAdd}
           handleSearch={handleSearchChange}
@@ -124,13 +119,19 @@ function UsersList() {
               alignItems="center"
               minHeight="100%"
             >
-              <Paper style={{ padding: '20px' }}>Oops! no results found...</Paper>
+              {!filteredTempUsers.length && !isLoading ? (
+                <Paper style={{ padding: '20px' }}>Oops! no results found...</Paper>
+              ) : (
+                <Paper style={{ padding: '20px' }}>
+                  <CircularProgress color="inherit" />.
+                </Paper>
+              )}
             </Box>
           )}
         </Container>
       </Container>
 
-      <UsersListFooter errorCounter={errorCounts} handleSave={handleSave} />
+      <UsersListFooter errorCounts={errorCounts} handleSave={handleSave} />
     </>
   );
 }

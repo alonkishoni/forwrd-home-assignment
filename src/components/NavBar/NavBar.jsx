@@ -5,10 +5,10 @@ function NavBar() {
   return (
     <AppBar position="fixed">
       <Toolbar>
-        <Button component={RouterLink} to="/users/list" color="inherit">
+        <Button component={RouterLink} to="/" color="inherit">
           Users
         </Button>
-        <Button component={RouterLink} to="/users/statistics" color="inherit">
+        <Button component={RouterLink} to="charts" color="inherit">
           Statistics
         </Button>
       </Toolbar>

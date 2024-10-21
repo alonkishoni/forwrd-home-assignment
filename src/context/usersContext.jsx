@@ -25,7 +25,7 @@ export const UsersContextProvider = ({ children }) => {
         const t = setTimeout(() => {
           setUsers(data);
           setIsLoading(false);
-        }, 200);
+        }, 2000);
 
         return () => {
           clearTimeout(t);

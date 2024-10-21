@@ -20,8 +20,8 @@ export const UsersListHeader = ({
         alignItems: 'center',
       }}
     >
-      <Stack alignItems={'center'} direction="row" spacing={2}>
-        <Typography variant="h6">Users List</Typography>
+      <Stack alignItems={'bottom'} direction="row" spacing={2}>
+        <Typography variant="h4">Users List</Typography>
         <Search
           value={searchTerm}
           onChange={handleSearch}
