@@ -1,4 +1,3 @@
-// UsersList.test.tsx
 import { describe, it, expect, beforeEach } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import UsersList from './UsersList';
