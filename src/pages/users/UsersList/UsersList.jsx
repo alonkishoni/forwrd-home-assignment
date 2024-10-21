@@ -1,6 +1,6 @@
 import { Box, CircularProgress, Container, Paper } from '@mui/material';
 import { useUsersContext } from '../../../context/usersContext';
-import { memo, useCallback, useEffect, useMemo, useState } from 'react';
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FixedSizeList } from 'react-window';
 import { UsersListFooter } from './UsersListFooter/UsersListFooter.jsx';
 import { UsersListHeader } from './UsersListHeader/UsersListHeader.jsx';
@@ -104,7 +104,7 @@ function UsersList() {
         >
           {filteredTempUsers.length && !isLoading ? (
             <FixedSizeList
-              height={800}
+              height={780}
               itemSize={48}
               itemCount={filteredTempUsers.length}
               itemData={itemData}

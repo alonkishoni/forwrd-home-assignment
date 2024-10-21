@@ -34,6 +34,7 @@ export const Search = ({ value, onChange, resultsLength }) => {
           width: 24,
           height: 24,
           fontSize: 14,
+          marginRight: '4px',
         }}
       >
         {resultsLength}
