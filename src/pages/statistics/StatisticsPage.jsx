@@ -1,7 +1,7 @@
-import UsersByCountryPieChartComponent from './UsersByCounryPie/UsersByCountryPie.jsx';
+import Charts from './charts/Charts.jsx';
 
 function StatisticsPage() {
-  return <UsersByCountryPieChartComponent />;
+  return <Charts />;
 }
 
 export default StatisticsPage;

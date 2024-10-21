@@ -1,20 +1,8 @@
-import React, { useMemo } from 'react';
-import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import { useUsersContext } from '../../../context/usersContext.jsx';
-import { chartColors } from '../../../consts/consts.js';
+import { Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
+import { chartColors } from '../../consts/consts.js';
+import React from 'react';
 
-const UsersByCountryPieChartComponent = () => {
-  const { users } = useUsersContext();
-
-  const data = useMemo(() => {
-    const usersToCountries = users.map((user) => user.country);
-    const uniqueCountries = [...new Set(usersToCountries)];
-    return uniqueCountries.map((country) => ({
-      name: country,
-      value: usersToCountries.filter((c) => c === country).length,
-    }));
-  }, [users]);
-
+const ResponsivePieChart = ({ data }) => {
   return (
     <div style={{ width: '100%', height: '100vh' }}>
       <ResponsiveContainer width="100%" height="100%">
@@ -43,5 +31,4 @@ const UsersByCountryPieChartComponent = () => {
     </div>
   );
 };
-
-export default UsersByCountryPieChartComponent;
+export default ResponsivePieChart;

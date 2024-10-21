@@ -104,7 +104,7 @@ function UsersList() {
         >
           {filteredTempUsers.length && !isLoading ? (
             <FixedSizeList
-              height={800}
+              height={780}
               itemSize={48}
               itemCount={filteredTempUsers.length}
               itemData={itemData}

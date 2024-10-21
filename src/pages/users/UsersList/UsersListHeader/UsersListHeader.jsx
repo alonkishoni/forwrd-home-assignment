@@ -18,10 +18,12 @@ export const UsersListHeader = ({
         justifyContent: 'space-between',
         display: 'flex',
         alignItems: 'center',
+        paddingTop: '24px',
+        paddingBottom: '0px',
       }}
     >
       <Stack alignItems={'bottom'} direction="row" spacing={2}>
-        <Typography variant="h4">Users List</Typography>
+        <Typography variant="h5">Users List</Typography>
         <Search
           value={searchTerm}
           onChange={handleSearch}
