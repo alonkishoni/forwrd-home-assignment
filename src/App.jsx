@@ -10,8 +10,8 @@ function App() {
       <NavBar />
       <UsersContextProvider>
         <Routes>
-          <Route path="users/statistics" exact element={<StatisticsPage />} />
-          <Route path="users/list" element={<UsersPage />} />
+          <Route path="charts" exact element={<StatisticsPage />} />
+          <Route path="/" element={<UsersPage />} />
         </Routes>
       </UsersContextProvider>
     </BrowserRouter>

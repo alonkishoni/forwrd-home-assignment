@@ -131,7 +131,11 @@ function UsersList() {
         </Container>
       </Container>
 
-      <UsersListFooter errorCounts={errorCounts} handleSave={handleSave} />
+      <UsersListFooter
+        errorCounts={errorCounts}
+        handleSave={handleSave}
+        listHasNewUsers={hasNewUsers}
+      />
     </>
   );
 }
