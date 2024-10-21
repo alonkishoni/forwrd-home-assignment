@@ -1,6 +1,6 @@
 // UsersList.test.tsx
 import { describe, it, expect, beforeEach } from 'vitest';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import UsersList from './UsersList';
 import { UsersContextProvider } from '../../../context/usersContext.jsx';
 
