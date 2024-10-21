@@ -11,15 +11,16 @@ import { useUsersContext } from '../../../../context/usersContext.jsx';
 export const UsersListFooter = ({
   errorCounts: { invalid: invalidCount, empty: emptyCount },
   handleSave,
-  hasSomeEmptyFields,
+  listHasEmptyFields,
+  listWasEdited,
 }) => {
   const { isLoading } = useUsersContext();
-  const hasSomeErrors = !!(invalidCount > 0 || emptyCount > 0);
+  const hasAnyErrors = !!(invalidCount > 0 || emptyCount > 0);
   const hasBothErrors = invalidCount > 0 && emptyCount > 0;
 
   return (
     <Paper style={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
-      <Box display="flex" justifyContent={hasSomeErrors ? 'space-between' : 'end'}>
+      <Box display="flex" justifyContent={hasAnyErrors ? 'space-between' : 'end'}>
         <Box display="flex">
           {(invalidCount > 0 || emptyCount > 0) && (
             <Alert style={{ margin: '5px' }} variant="filled" severity="error">
@@ -36,12 +37,19 @@ export const UsersListFooter = ({
 
         <BottomNavigation>
           <BottomNavigationAction
-            disabled={isLoading || hasSomeErrors}
+            style={{
+              pointerEvents: hasAnyErrors || listHasEmptyFields ? 'none' : 'auto',
+            }}
+            disabled={isLoading || hasAnyErrors}
             onClick={handleSave}
             label="Recents"
             icon={
               <SaveIcon
-                color={hasSomeErrors || hasSomeEmptyFields ? 'disabled' : 'primary'}
+                color={
+                  hasAnyErrors || listHasEmptyFields || !listWasEdited
+                    ? 'disabled'
+                    : 'primary'
+                }
               />
             }
           />
