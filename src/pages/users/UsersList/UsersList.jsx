@@ -44,6 +44,7 @@ function UsersList() {
       country: '',
       email: '',
       phone: '',
+      isNew: true,
     };
     setTempUsers((prevUsers) => [newUser, ...prevUsers]);
   }, []);
@@ -84,7 +85,7 @@ function UsersList() {
 
   return (
     <>
-      <Container>
+      <Container style={{ paddingInline: '0px' }}>
         <UsersListHeader
           handleAdd={handleAdd}
           handleSearch={handleSearchChange}
