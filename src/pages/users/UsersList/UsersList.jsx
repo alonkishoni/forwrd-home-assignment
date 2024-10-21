@@ -21,6 +21,14 @@ function UsersList() {
     [tempUsers, debouncedSearchTerm]
   );
 
+  const listHasEmptyFields = useMemo(
+    () =>
+      tempUsers.some((user) =>
+        Object.values(user).some((value) => !value || value === '')
+      ),
+    [tempUsers]
+  );
+
   const handleInputChange = useCallback((userId, field, value) => {
     setTempUsers((prevUsers) => {
       const userIndex = prevUsers.findIndex((user) => user.id === userId);
@@ -133,7 +141,11 @@ function UsersList() {
         </Container>
       </Container>
 
-      <UsersListFooter errorCounts={errorCounts} handleSave={handleSave} />
+      <UsersListFooter
+        errorCounts={errorCounts}
+        hasSomeEmptyFields={listHasEmptyFields}
+        handleSave={handleSave}
+      />
     </>
   );
 }
