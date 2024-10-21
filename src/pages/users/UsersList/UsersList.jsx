@@ -103,15 +103,17 @@ function UsersList() {
           }}
         >
           {filteredTempUsers.length && !isLoading ? (
-            <FixedSizeList
-              height={780}
-              itemSize={48}
-              itemCount={filteredTempUsers.length}
-              itemData={itemData}
-              itemKey={(index, data) => data.filteredTempUsers?.[index]?.id}
-            >
-              {VirtualizedRowWrapper}
-            </FixedSizeList>
+            <Box data-testid="users-list">
+              <FixedSizeList
+                height={780}
+                itemSize={48}
+                itemCount={filteredTempUsers.length}
+                itemData={itemData}
+                itemKey={(index, data) => data.filteredTempUsers?.[index]?.id}
+              >
+                {VirtualizedRowWrapper}
+              </FixedSizeList>
+            </Box>
           ) : (
             <Box
               display="flex"
@@ -122,7 +124,7 @@ function UsersList() {
               {!filteredTempUsers.length && !isLoading ? (
                 <Paper style={{ padding: '20px' }}>Oops! no results found...</Paper>
               ) : (
-                <Paper style={{ padding: '20px' }}>
+                <Paper data-testid="loader" style={{ padding: '20px' }}>
                   <CircularProgress color="inherit" />.
                 </Paper>
               )}

@@ -1,4 +1,4 @@
-import { Grid, IconButton } from '@mui/material';
+import { Container, Grid, IconButton } from '@mui/material';
 import { memo, useCallback } from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
 import UserField from '../../../components/TextSelect/TextSelect.jsx';
@@ -28,7 +28,7 @@ const UserRow = ({
   }, [handleDelete, user.id]);
 
   return (
-    <div style={style}>
+    <Container data-testid="user-item" style={style}>
       <Grid container padding={0.5} spacing={1}>
         {fields.map((fieldName) => {
           const isCountryField = fieldName === 'country';
@@ -37,11 +37,12 @@ const UserRow = ({
           return (
             <Grid key={fieldName} item xs={isCountryField ? 2 : 3}>
               <UserField
+                data-testid="users-row"
                 key={fieldName}
                 select={isCountryField}
                 options={isCountryField ? countryOptions : null}
                 name={fieldName}
-                value={user?.[fieldName]}
+                value={user?.[fieldName] !== undefined ? user?.[fieldName] : ''}
                 error={existingError?.invalid || existingError?.empty}
                 handleChange={handleChange}
               />
@@ -54,7 +55,7 @@ const UserRow = ({
           </IconButton>
         </Grid>
       </Grid>
-    </div>
+    </Container>
   );
 };
 
