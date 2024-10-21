@@ -8,7 +8,7 @@ export const Search = ({ value, onChange, resultsLength }) => {
     <Stack
       style={{
         borderRadius: '50px',
-        border: focused ? '2px #1876d2 solid' : '1px gray solid',
+        border: focused ? '2px #1876d2 solid' : '1px #cccccc solid',
         paddingInline: '4px',
       }}
       alignItems={'center'}
@@ -30,11 +30,10 @@ export const Search = ({ value, onChange, resultsLength }) => {
       />
       <Avatar
         style={{
-          backgroundColor: focused ? '#1876d2' : 'gray',
+          backgroundColor: focused ? '#1876d2' : '#bdbdbd',
           width: 24,
           height: 24,
           fontSize: 14,
-          marginRight: '4px',
         }}
       >
         {resultsLength}
