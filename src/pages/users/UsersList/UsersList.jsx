@@ -15,13 +15,14 @@ function UsersList() {
   const [searchTerm, setSearchTerm] = useState('');
   const [tempUsers, setTempUsers] = useState([]);
   const debouncedSearchTerm = useDebounce(searchTerm, 300);
+  const [isEdited, setIsEdited] = useState(false);
 
   const filteredTempUsers = useMemo(
     () => filterUsers(tempUsers, debouncedSearchTerm),
     [tempUsers, debouncedSearchTerm]
   );
 
-  const listHasEmptyFields = useMemo(
+  const hasEmptyFields = useMemo(
     () =>
       tempUsers.some((user) =>
         Object.values(user).some((value) => !value || value === '')
@@ -29,17 +30,22 @@ function UsersList() {
     [tempUsers]
   );
 
-  const handleInputChange = useCallback((userId, field, value) => {
-    setTempUsers((prevUsers) => {
-      const userIndex = prevUsers.findIndex((user) => user.id === userId);
-      if (userIndex !== -1) {
-        const updatedUsers = [...prevUsers];
-        updatedUsers[userIndex] = { ...updatedUsers[userIndex], [field]: value };
-        return updatedUsers;
-      }
-      return prevUsers;
-    });
-  }, []);
+  const handleInputChange = useCallback(
+    (userId, field, value) => {
+      setTempUsers((prevUsers) => {
+        const userIndex = prevUsers.findIndex((user) => user.id === userId);
+        if (userIndex !== -1) {
+          const updatedUsers = [...prevUsers];
+          updatedUsers[userIndex] = { ...updatedUsers[userIndex], [field]: value };
+          !isEdited && setIsEdited(true);
+          return updatedUsers;
+        }
+
+        return prevUsers;
+      });
+    },
+    [isEdited]
+  );
 
   const handleSearchChange = useCallback((event) => {
     setSearchTerm(event.target.value);
@@ -54,8 +60,9 @@ function UsersList() {
       phone: '',
       isNew: true,
     };
+    !isEdited && setIsEdited(true);
     setTempUsers((prevUsers) => [newUser, ...prevUsers]);
-  }, []);
+  }, [isEdited]);
 
   const handleDelete = useCallback(
     (userId) => {
@@ -68,10 +75,10 @@ function UsersList() {
         }
         return prevUsers;
       });
-
+      !isEdited && setIsEdited(true);
       deleteErrorById(userId);
     },
-    [deleteErrorById]
+    [deleteErrorById, isEdited]
   );
 
   const handleSave = useCallback(() => {
@@ -143,7 +150,8 @@ function UsersList() {
 
       <UsersListFooter
         errorCounts={errorCounts}
-        hasSomeEmptyFields={listHasEmptyFields}
+        listHasEmptyFields={hasEmptyFields}
+        listWasEdited={isEdited}
         handleSave={handleSave}
       />
     </>
