@@ -4,7 +4,7 @@ import ResponsivePieChart from '../../../components/PieChart/PieChart.jsx';
 import { Grid } from '@mui/material';
 
 const getFirstStringAfterSpace = (str) => {
-  return str.split(' ')[1].toLowerCase();
+  return str?.split(' ')?.[1]?.toLowerCase();
 };
 const Charts = () => {
   const { users } = useUsersContext();
